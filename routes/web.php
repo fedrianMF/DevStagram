@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\PerfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +32,10 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+//rutas perfil
+Route::get('editar-perfil', [PerfilController::class, 'index'])->name('perfil.index');
+Route::post('editar-perfil', [PerfilController::class, 'store'])->name('perfil.store');
 
-Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index');
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/post', [PostController::class, 'store'])->name('post.store');
 Route::get('/{user:username}/post/{post}', [PostController::class, 'show'])->name('post.show');
@@ -44,3 +47,5 @@ Route::post('/images', [ImageController::class, 'store'])->name('image.store');
 //like photos
 Route::post('/post/{post}/likes',[LikeController::class, 'store'])->name('post.likes.store');
 Route::delete('/post/{post}/likes',[LikeController::class, 'destroy'])->name('post.likes.destroy');
+
+Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index');
